@@ -1,0 +1,71 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#define MAX_SIZE 8
+
+    int stack_top = -1;
+    int stack[MAX_SIZE];
+    int stack_empty = 1;
+    int stack_full = 0;
+    
+    void push(int value)
+    {
+        if(!stack_full)
+        {
+            stack_top++;
+            stack[stack_top] = value;
+            
+            stack_empty = 0;
+            
+            if(stack_top == (MAX_SIZE-1))
+                stack_full = 1;
+                
+            return;
+        }
+        printf("Error: Stack is full");
+        return;
+    }
+    
+    void pop()
+    {
+        if(!stack_empty)
+        {
+            stack[stack_top] = 0;
+            stack_top--;
+            
+            if(stack_top == -1)
+                stack_empty = 1;
+            
+                stack_full = 0;
+                
+            return;
+        }
+        printf("Error: Stack is empty");
+        return;
+    }
+    
+    int read_top()
+    {
+        return stack[stack_top];
+    }
+
+int main()
+{
+    push(5);
+    push(7);
+    push(9);
+    
+    printf(" %i",read_top());
+    pop();
+    printf(" %i",read_top());
+    pop();
+    printf(" %i",read_top());
+    pop();
+    return 0;
+}
